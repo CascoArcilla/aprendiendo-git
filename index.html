@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejemplo para JacaScript</title>
+        
+        <script type="text/javascript">
+            function modificar(n){
+                document.getElementById("sobre").innerHTML = n.country[0].country_id ;
+            }
+
+            async function traerPais(){
+                const respuesta = await fetch("https://api.nationalize.io/?name=Vladimir");
+
+                if(!respuesta.ok){
+                    let oops = "404 no hay nada viejo";
+                    alert(oops);
+                    throw new Error(oops);
+                }
+
+                const nombre = respuesta.json();
+
+                return nombre;
+            }
+
+            traerPais().then(modificar)
+        </script>
+
+    </head>
+    <body>
+        <h1>El simple</h1>
+        <p>Genial, si señor.</p>
+        
+        <p id="sobre">
+            Perame, un momento wacho... 
+        </p>
+
+        <script type="texty/javascript">
+            modificar("Hola animalito");
+        </script>
+
+    </body>
+</html>
